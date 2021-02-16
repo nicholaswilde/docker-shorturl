@@ -21,7 +21,7 @@ $ docker run -d \
   -e TZ=America/Los_Angeles `# optional` \
   -e PUID=1000  `# optional` \
   -e PGID=1000   `# optional` \
-  -p 3000:3000 \
+  -p 8000:8000 \
   --restart unless-stopped \
   nicholaswilde/shorturl
 ```
