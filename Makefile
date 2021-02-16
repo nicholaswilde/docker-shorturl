@@ -77,7 +77,7 @@ rm: stop
 
 ## run    	: Run the Docker image
 run:
-	docker run --rm --name $(CONTAINER_NAME)-$(CONTAINER_INSTANCE) $(PORTS) $(ENV) $(NS)/$(IMAGE_NAME):$(VERSION)-ls$(LS)
+	docker run --rm -v /home/nicholas/git/nicholaswilde/docker-shorturl/data:/data --name $(CONTAINER_NAME)-$(CONTAINER_INSTANCE) $(PORTS) $(ENV) $(NS)/$(IMAGE_NAME):$(VERSION)-ls$(LS)
 
 ## rund   	: Run the Docker image in the background
 rund:

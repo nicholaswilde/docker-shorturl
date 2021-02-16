@@ -1,12 +1,12 @@
 # Docker Template
-[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/nicholaswilde/template)](https://hub.docker.com/r/nicholaswilde/template)
-[![Docker Pulls](https://img.shields.io/docker/pulls/nicholaswilde/template)](https://hub.docker.com/r/nicholaswilde/template)
-[![GitHub](https://img.shields.io/github/license/nicholaswilde/docker-template)](./LICENSE)
-[![ci](https://github.com/nicholaswilde/docker-template/workflows/ci/badge.svg)](https://github.com/nicholaswilde/docker-template/actions?query=workflow%3Aci)
-[![lint](https://github.com/nicholaswilde/docker-template/workflows/lint/badge.svg?branch=main)](https://github.com/nicholaswilde/docker-template/actions?query=workflow%3Alint)
+[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/nicholaswilde/shorturl)](https://hub.docker.com/r/nicholaswilde/shorturl)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nicholaswilde/shorturl)](https://hub.docker.com/r/nicholaswilde/shorturl)
+[![GitHub](https://img.shields.io/github/license/nicholaswilde/docker-shorturl)](./LICENSE)
+[![ci](https://github.com/nicholaswilde/docker-shorturl/workflows/ci/badge.svg)](https://github.com/nicholaswilde/docker-shorturl/actions?query=workflow%3Aci)
+[![lint](https://github.com/nicholaswilde/docker-shorturl/workflows/lint/badge.svg?branch=main)](https://github.com/nicholaswilde/docker-shorturl/actions?query=workflow%3Alint)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
-A multi-architecture image for [template](https://github.com/nicholaswilde/docker-template).
+A multi-architecture image for [shorturl](https://github.com/prologic/shorturl).
 
 ## Dependencies
 
@@ -17,18 +17,18 @@ A multi-architecture image for [template](https://github.com/nicholaswilde/docke
 
 ```bash
 $ docker run -d \
-  --name=template \
+  --name=shorturl \
   -e TZ=America/Los_Angeles `# optional` \
   -e PUID=1000  `# optional` \
   -e PGID=1000   `# optional` \
   -p 3000:3000 \
   --restart unless-stopped \
-  nicholaswilde/template
+  nicholaswilde/shorturl
 ```
 
 |   user   | uid |
 |:--------:|:---:|
-| www-data |  33 |
+| abc | 1000 |
 
 ### docker-compose
 

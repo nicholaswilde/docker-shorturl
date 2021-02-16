@@ -1,17 +1,15 @@
 ---
 version: "2.1"
 services:
-  template:
-    image: nicholaswilde/template:latest
-    container_name: template-default
+  shorturl:
+    image: nicholaswilde/shorturl:latest
+    container_name: shorturl-default
     ports:
-      - 3000:3000
+      - 8000:8000
     restart: unless-stopped
     volumes:
       - app:/app
-      - config:/config
-      - defaults:/defaults
+      - data:/data
 volumes:
   app:
-  config:
-  defaults:
+  data:
