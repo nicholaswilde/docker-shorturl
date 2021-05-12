@@ -161,7 +161,8 @@ jobs:
           push: true
           build-args: |
             BUILD_DATE=${{ env.date }}
-            VERSION=${{ github.event.inputs.version }}
+            VERSION=${{ steps.prep.outputs.version }}
+            CHECKSUM=${{ steps.prep.outputs.checksum }}
           tags: |
             ${{ github.repository_owner }}/${{ env.repo_name }}:latest
             ${{ github.repository_owner }}/${{ env.repo_name }}:${{ env.tag }}
