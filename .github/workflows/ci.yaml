@@ -152,32 +152,32 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_TOKEN }}
 
-#      - name: Build and push
-#        uses: docker/build-push-action@v2.4.0
-#        with:
-#          context: .
-#          file: ./Dockerfile
-#          platforms: linux/amd64,linux/arm/v7,linux/arm64
-#          push: true
-#          build-args: |
-#            BUILD_DATE=${{ env.date }}
-#            VERSION=${{ github.event.inputs.version }}
-#          tags: |
-#            ${{ github.repository_owner }}/${{ env.repo_name }}:latest
-#            ${{ github.repository_owner }}/${{ env.repo_name }}:${{ env.tag }}
-#            ghcr.io/${{ github.repository_owner }}/${{ env.repo_name }}:latest
-#            ghcr.io/${{ github.repository_owner }}/${{ env.repo_name }}:${{ env.tag }}
-#            quay.io/${{ github.repository_owner }}/${{ env.repo_name }}:latest
-#            quay.io/${{ github.repository_owner }}/${{ env.repo_name }}:${{ env.tag }}
+      - name: Build and push
+        uses: docker/build-push-action@v2.4.0
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          push: true
+          build-args: |
+            BUILD_DATE=${{ env.date }}
+            VERSION=${{ github.event.inputs.version }}
+          tags: |
+            ${{ github.repository_owner }}/${{ env.repo_name }}:latest
+            ${{ github.repository_owner }}/${{ env.repo_name }}:${{ env.tag }}
+            ghcr.io/${{ github.repository_owner }}/${{ env.repo_name }}:latest
+            ghcr.io/${{ github.repository_owner }}/${{ env.repo_name }}:${{ env.tag }}
+            quay.io/${{ github.repository_owner }}/${{ env.repo_name }}:latest
+            quay.io/${{ github.repository_owner }}/${{ env.repo_name }}:${{ env.tag }}
 
-#      - name: Create Release
-#        id: create_release
-#        uses: actions/create-release@v1.1.4
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-#        with:
-#          tag_name: ${{ env.tag }}
-#          release_name: ${{ env.tag }}
-#          draft: false
-#          prerelease: false
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ env.tag }}
+          release_name: ${{ env.tag }}
+          draft: false
+          prerelease: false
 
