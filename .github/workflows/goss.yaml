@@ -42,7 +42,7 @@ jobs:
       uses: mukunku/tag-exists-action@v1.0.0
       id: checkTag
       with: 
-        tag: ${{ steps.prep.outputs.version }}-LS${{ steps.prep.outputs.ls }}
+        tag: ${{ steps.prep.outputs.version }}-ls${{ steps.prep.outputs.ls }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
