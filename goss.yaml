@@ -1,0 +1,14 @@
+---
+process:
+  shorturl:
+    running: true
+
+port:
+  tcp6:8000:
+    listening: true
+
+http:
+  http://localhost:8000:
+    status: 200
+    body:
+      - '<title>ShortURL</title>'
