@@ -32,7 +32,7 @@ on:
         required: true
 
 jobs:
-  main:
+  build:
     runs-on: ubuntu-latest
     steps:
         
