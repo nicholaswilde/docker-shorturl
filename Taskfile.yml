@@ -14,6 +14,8 @@ vars:
   TAG_LATEST: "{{ .NS }}/{{ .IMAGE_NAME }}:latest"
   CONTAINER: "{{ .CONTAINER_NAME }}-{{ .CONTAINER_INSTANCE }}"
   RUN: "docker run -it --rm --name {{ .CONTAINER_NAME }}-{{ .CONTAINER_INSTANCE }} {{ .ENV }} {{ .PORTS }}"
+  DGOSS_RUN: "dgoss run -it --rm --name {{ .CONTAINER_NAME }}-{{ .CONTAINER_INSTANCE }} {{ .ENV }} {{ .PORTS }}"
+  DGOSS_EDIT: "dgoss edit -it --rm --name {{ .CONTAINER_NAME }}-{{ .CONTAINER_INSTANCE }} {{ .ENV }} {{ .PORTS }}"
   EXEC: "docker exec -it {{ .CONTAINER }}"
   BUILD: "docker buildx build {{ .BUILD_ARGS }} -t"
 
@@ -23,6 +25,7 @@ includes:
   chk: ./.taskfiles/chk.yaml
   date: ./.taskfiles/date.yaml
   deps: ./.taskfiles/deps.yaml
+  goss: ./.taskfiles/goss.yaml
   image: ./.taskfiles/image.yaml
   load: ./.taskfiles/load.yaml
   pkgs: ./.taskfiles/pkgs.yaml
