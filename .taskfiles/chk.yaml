@@ -11,7 +11,7 @@ tasks:
 
   export:
     silent: true
-    desc: Get the checksum of the release or source package.
+    desc: Export the checksum of the release or source package to CHECKSUM
     deps:
       - _varcheck
       - _release-export
@@ -42,6 +42,7 @@ tasks:
       - |
         SUM=$(wget -q {{ .URL }} -O- | sha256sum|awk '{print $1}')
         printf "%s" "$SUM" > CHECKSUM
+        cat CHECKSUM
 
   _release:
     cmds:

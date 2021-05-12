@@ -25,6 +25,8 @@ jobs:
         echo ::set-output name=version::${VERSION}
         CHECKSUM=$(cat ./CHECKSUM)
         echo ::set-output name=checksum::${CHECKSUM}
+        LS=$(cat ./LS)
+        echo ::set-output name=ls::${LS}
         if test -f "./goss.yaml"; then
           echo ::set-output name=goss::true
         else

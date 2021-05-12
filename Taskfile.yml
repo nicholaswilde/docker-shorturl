@@ -8,6 +8,8 @@ vars:
     sh: cat VERSION
   CHECKSUM:
     sh: cat CHECKSUM
+  LS:
+    sh: cat LS
   BUILD_DATE:
     sh: "date -u +%Y-%m-%dT%H%M%S%Z"
   BUILD_ARGS: >-
@@ -33,6 +35,7 @@ includes:
   goss: ./.taskfiles/goss.yaml
   image: ./.taskfiles/image.yaml
   load: ./.taskfiles/load.yaml
+  ls: ./.taskfiles/ls.yaml
   pkgs: ./.taskfiles/pkgs.yaml
   run: ./.taskfiles/run.yaml
   shell: ./.taskfiles/shell.yaml
@@ -46,13 +49,6 @@ tasks:
       - "{{ .BUILD }} {{ .TAG_VERSION }} -f Dockerfile ."
     deps:
       - build:build-deps
-
-  checksum:
-    desc: Get the checksum of the release or source package.
-    deps:
-      - chk:_varcheck
-      - chk:_release
-      - chk:_source
 
   date:
     desc: Get the date of the image
