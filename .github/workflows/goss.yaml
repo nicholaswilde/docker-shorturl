@@ -17,6 +17,26 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    # Define if tests and push should be run against which versions/platforms
+    - name: Prepare
+      id: prep
+      run: |
+        VERSION=$(cat ./VERSION)
+        echo ::set-output name=version::${VERSION}
+        CHECKSUM=$(cat ./CHECKSUM)
+        echo ::set-output name=checksum::${CHECKSUM}
+        if test -f "./goss.yaml"; then
+          echo ::set-output name=goss::true
+        else
+          echo ::set-output name=goss::false
+        fi
+        if [ "${{github.event_name}}" == "pull_request" ]; then
+          echo ::set-output name=push::false
+        else
+          echo ::set-output name=push::true
+        fi
+
+    # Setup QEMU
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
       with:
@@ -34,14 +54,18 @@ jobs:
     # Install the GOSS testing framework
     - name: Set up goss/dgoss
       uses: e1himself/goss-installation-action@v1.0.3
+      if: ${{ steps.prep.outputs.goss == 'true' }}
       with:
         version: 'v0.3.16'
 
     # Creates a local build to run tests on
     - name: Build and Load local test-container
       uses: docker/build-push-action@v2
+      if: ${{ steps.prep.outputs.goss == 'true' }}
       with:
-        build-args: VERSION=v0.1.0
+        build-args: |
+          VERSION=${{ steps.prep.outputs.version }}
+          CHECKSUM=${{ steps.prep.outputs.checksum }}
         context: .
         file: ./Dockerfile
         load: true
@@ -50,6 +74,7 @@ jobs:
 
     # Run GOSS tests if included with the container
     - name: Run GOSS tests
+      if: ${{ steps.prep.outputs.goss == 'true' }}
       env:
         GOSS_FILE: ./goss.yaml
       run: |
