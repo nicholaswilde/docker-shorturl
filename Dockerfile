@@ -8,12 +8,12 @@ RUN \
   echo "**** install packages ****" && \
   apk add --no-cache \
     wget=1.21.1-r1 \
-    git=2.30.1-r0 \
+    git=2.30.2-r0 \
     make=4.3-r0 \
     build-base=0.5-r2 && \
   echo "**** download haste ****" && \
   mkdir /app && \
-  wget "https://github.com/prologic/shorturl/archive/${FILENAME}" && \
+  wget -nv "https://github.com/prologic/shorturl/archive/${FILENAME}" && \
   echo "${CHECKSUM}  ${FILENAME}" | sha256sum -c && \
   tar -xvf "${FILENAME}" --strip-components 1 && \
   make TAG=$VERSION BUILD=dev build
@@ -21,6 +21,8 @@ RUN \
 FROM ghcr.io/linuxserver/baseimage-alpine:3.13
 ARG BUILD_DATE
 ARG VERSION
+WORKDIR /
+# hadolint ignore=DL3048
 LABEL build_version="Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="nicholaswilde"
 COPY --from=build --chown=abc:abc /go/src/github.com/prologic/shorturl/shorturl /app/shorturl
