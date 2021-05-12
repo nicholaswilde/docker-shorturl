@@ -1,0 +1,18 @@
+---
+version: '3'
+
+tasks:
+  print:
+    cmds:
+      - printf %s {{ .VERSION }}
+    vars:
+      VERSION:
+        sh: curl -sX GET {{ .API_URL }} | jq --raw-output '.tag_name'
+    silent: true
+
+  export:
+    cmds:
+      - printf "%s" "{{ .VERSION }}" > VERSION
+    vars:
+      VERSION:
+        sh: curl -sX GET {{ .API_URL }} | jq --raw-output '.tag_name'

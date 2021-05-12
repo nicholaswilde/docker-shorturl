@@ -1,6 +1,6 @@
 FROM golang:1.14.15-alpine3.13 as build
 ARG VERSION
-ARG CHECKSUM=08d10ca7be93abdf4970864c87a6500165dfdb2c35435252aa82424fc249e8c9
+ARG CHECKSUM
 WORKDIR /go/src/github.com/prologic/shorturl
 ARG FILENAME="${VERSION}.tar.gz"
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]

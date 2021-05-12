@@ -4,6 +4,10 @@ version: '3'
 dotenv: ['task.env']
 
 vars:
+  VERSION:
+    sh: cat VERSION
+  CHECKSUM:
+    sh: cat CHECKSUM
   BUILD_DATE:
     sh: "date -u +%Y-%m-%dT%H%M%S%Z"
   BUILD_ARGS: >-
@@ -18,6 +22,7 @@ vars:
   DGOSS_EDIT: "dgoss edit -it --rm --name {{ .CONTAINER_NAME }}-{{ .CONTAINER_INSTANCE }} {{ .ENV }} {{ .PORTS }}"
   EXEC: "docker exec -it {{ .CONTAINER }}"
   BUILD: "docker buildx build {{ .BUILD_ARGS }} -t"
+  API_URL: "https://api.github.com/repos/{{ .SOURCE_ORG }}/{{ .SOURCE_REPO }}/releases/latest"
 
 includes:
   build: ./.taskfiles/build.yaml
@@ -32,6 +37,7 @@ includes:
   run: ./.taskfiles/run.yaml
   shell: ./.taskfiles/shell.yaml
   snyk: ./.taskfiles/snyk.yaml
+  version: ./.taskfiles/version.yaml
 
 tasks:
   build:
