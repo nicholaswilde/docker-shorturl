@@ -37,7 +37,16 @@ jobs:
         else
           echo ::set-output name=push::true
         fi
+        
+    - uses: mukunku/tag-exists-action@v1.0.0
+      id: checkTag
+      with: 
+        tag: ${{ steps.prep.outputs.version }}-${{ steps.prep.outputs.ls }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - run: echo ${{ steps.checkTag.outputs.exists }}
+    
     # Setup QEMU
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
