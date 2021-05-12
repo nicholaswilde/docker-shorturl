@@ -42,7 +42,7 @@ jobs:
     - name: Build and Load local test-container
       uses: docker/build-push-action@v2
       with:
-        build-args: VERSION=${{ steps.prep.outputs.version }}
+        build-args: VERSION=v0.1.0
         context: .
         file: ./Dockerfile
         load: true
