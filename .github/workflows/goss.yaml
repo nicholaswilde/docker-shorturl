@@ -45,7 +45,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - run: echo ${{ steps.checkTag.outputs.exists }}
+    - run: |
+        if ${{ steps.checkTag.outputs.exists }} == true
+          exit 1
+        fi
     
     # Setup QEMU
     - name: Set up QEMU
