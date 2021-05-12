@@ -1,5 +1,5 @@
 ---
-name: Goss
+name: goss
 
 on:
   workflow_dispatch:
