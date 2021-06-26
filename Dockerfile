@@ -18,7 +18,7 @@ RUN \
   tar -xvf "${FILENAME}" --strip-components 1 && \
   make TAG=$VERSION BUILD=dev build
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.13
+FROM ghcr.io/linuxserver/baseimage-alpine:3.14
 ARG BUILD_DATE
 ARG VERSION
 WORKDIR /
